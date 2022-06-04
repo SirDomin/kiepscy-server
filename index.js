@@ -1,13 +1,19 @@
-import Audic from 'audic';
+import exec from 'child_process'
+
 import http from 'http'
 
-const audic = new Audic('music/sound.mp3');
 
 http.createServer(function (req, res) {
     res.writeHead(200, {'Content-Type': 'text/plain'});
+
+    playSound()
+
     res.write('Hello World!');
-
-    audic.play();
-
     res.end();
-}).listen(8080);
+
+}).listen(8080)
+
+
+function playSound() {
+    exec.exec('play music/sound.mp3');
+}
